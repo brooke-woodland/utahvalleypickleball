@@ -1,8 +1,57 @@
-{% extends 'base.html' %}
-{% block content %}
+{% load static %}
+<!DOCTYPE html>
+<!--
+ @license
+ Copyright 2019 Google LLC. All Rights Reserved.
+ SPDX-License-Identifier: Apache-2.0
+-->
+<html>
+  <head>
+    <title>Pickeball Locations Map</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+    {% comment %} <script type="module" src="{% static 'initMap.js' %}"></script> {% endcomment %}
+    <script>
+        // Initialize and add the map
+        function initMap() {
 
-<div>
-    <p>This is the map page view</p>
-</div>
+            // Grab data and parse it
+            const data = JSON.parse("{{data|escapejs}}");
 
-{% endblock %}
+            // The location of Provo
+            const provo = { lat: 40.23469107929458, lng: -111.65817642354494 };
+
+            // The map, centered at Provo
+            const map = new google.maps.Map(document.getElementById("map"), {
+            zoom: 10.5,
+            center: provo,
+            });
+
+            // loops through each coordinate object in data and adds it as a marker
+            data.map(cd => {
+                new google.maps.Marker({
+                    position: cd,
+                    map: map
+                })
+            });
+        }
+
+        window.initMap = initMap;
+    </script>
+  </head>
+  <body>
+    <h3>Testing</h3>
+    <!--The div element for the map -->
+    <div id="map" style="height: 80vh; width: 100%"></div>
+
+    <!-- 
+     The `defer` attribute causes the callback to execute after the full HTML
+     document has been parsed. For non-blocking uses, avoiding race conditions,
+     and consistent behavior across browsers, consider loading using Promises
+     with https://www.npmjs.com/package/@googlemaps/js-api-loader.
+    -->
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA1QLwVy_gy2FPUh4v6_ly1CqmtUkk7IAw&callback=initMap&v=weekly"
+      defer
+    ></script>
+  </body>
+</html>
