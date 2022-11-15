@@ -1,25 +1,26 @@
 from django.http import HttpResponse
+from django.shortcuts import render
 
 def indexPageView(request):
     """
     This is the landing page
     """
-    return HttpResponse('Homepage')
+    return render(request, 'pickleball/index.html')
 
 def aboutPageView(request):
     """
     This is the about page
     """
-    return HttpResponse('About Page')
+    return render(request, 'pickleball/about.html')
 
 def mapsPageView(request):
     """
     This is the maps page
     """
-    return HttpResponse('Map Page')
+    return render(request, 'pickleball/map.html')
 
 def dataPageView(request):
     """
     This is the data page
     """
-    return HttpResponse('Data Page')
+    return render(request, 'pickleball/data.html')
