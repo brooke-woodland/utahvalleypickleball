@@ -10,6 +10,6 @@ class Location(models.Model):
     courts = models.IntegerField(default=0)
     openTime = models.TimeField(default=0)
     closeTime = models.TimeField(default=0)
-    indoor = models.BooleanField
+    indoor = models.BooleanField(default=False)
         
 
