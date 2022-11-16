@@ -23,10 +23,7 @@
       </label>
       <br />
       <label for="state"
-        >State:
-        <br />
-        <input type="text" id="state" title="Enter the state: " />
-      </label>
+        >State: Utah
       <br />
       <label for="zip"
         >Zip:
@@ -35,7 +32,7 @@
       </label>
       <br />
       <label for="courtnum"
-        >Street Address:
+        >Num Courts:
         <br />
         <input type="text" id="courtnum" title="Enter the number of courts: " />
       </label>
@@ -52,11 +49,10 @@
       <input type="text" id="closes" title="What time do the court(s) close?: " />
     </label>
     <br />
-    <label for="outin"
-    >Indoor or Outdoor?:
-    <br />
-    <input type="text" id="outin" title="Is this location indoor or outdoor? : " />
-  </label>
+    <input type="radio" id="indoor" name="indoor" value="indoor">
+    <label for="indoor">Indoor</label><br>
+    <input type="radio" id="outdoor" name="outdoor" value="outdoor">
+    <label for="outdoor">Outdoor</label><br>
   <br />
   <label for="name"
   >Court Name:
@@ -64,6 +60,8 @@
   <input type="text" id="name" title="Enter the location name (if applicable): " />
 </label>
 <br />
+<fieldset>
+<form>
 </div>
 
 {% endblock %}
