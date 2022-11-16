@@ -1,7 +1,6 @@
 from django.http import HttpResponse
 from django.shortcuts import render
 import googlemaps
-from .models import Location
 
 # import asyncio
 from json import dumps
@@ -24,29 +23,27 @@ def mapsPageView(request):
     """
     gmaps = googlemaps.Client(key="AIzaSyA1QLwVy_gy2FPUh4v6_ly1CqmtUkk7IAw")
 
-    locationData = Location.objects.all()
-
-    # sampleData = [
-    #     {
-    #         "address": "600 North 300 East",
-    #         "city": "Orem",
-    #         "state": "UT"
-    #     },
-    #     {
-    #         "address": "575 W Center St",
-    #         "city": "Orem",
-    #         "state": "UT"
-    #     },
-    #     {
-    #         "address": "320 500 N",
-    #         "city": "Provo",
-    #         "state": "UT"
-    #     },
-    # ]
+    sampleData = [
+        {
+            "street_address": "600 North 300 East",
+            "city": "Orem",
+            "state": "UT"
+        },
+        {
+            "street_address": "575 W Center St",
+            "city": "Orem",
+            "state": "UT"
+        },
+        {
+            "street_address": "320 500 N",
+            "city": "Provo",
+            "state": "UT"
+        },
+    ]
 
     coordinateArray = []
 
-    for data in locationData:
+    for data in sampleData:
         geocode_result = gmaps.geocode(f"{data['street_address']}, {data['city']}, {data['state']}")
 
         latitude = geocode_result[0]['geometry']['location']['lat']
