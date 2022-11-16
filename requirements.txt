@@ -3,3 +3,4 @@ pillow
 googlemaps
 django-bootstrap-v5
 Django
+django-environ
