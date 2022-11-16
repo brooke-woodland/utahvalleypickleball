@@ -1,9 +1,10 @@
 from django.http import HttpResponse
 from django.shortcuts import render
 import googlemaps
-
-# import asyncio
 from json import dumps
+import environ
+
+env = environ.Env()
 
 def indexPageView(request):
     """
@@ -21,7 +22,9 @@ def mapsPageView(request):
     """
     This is the maps page
     """
-    gmaps = googlemaps.Client(key="AIzaSyA1QLwVy_gy2FPUh4v6_ly1CqmtUkk7IAw")
+    key = env('GOOGLE_MAPS_API_KEY')
+
+    gmaps = googlemaps.Client(key=key)
 
     sampleData = [
         {
@@ -54,7 +57,8 @@ def mapsPageView(request):
     coordinateArray = dumps(coordinateArray)
 
     context = {
-        "data": coordinateArray
+        "data": coordinateArray,
+        "key": key
     }
 
     return render(request, 'pickleball/map.html', context)
