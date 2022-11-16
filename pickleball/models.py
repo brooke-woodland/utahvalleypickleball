@@ -2,7 +2,7 @@ from django.db import models
 from django.core.exceptions import ValidationError
 
 # Create your models here.
-class location(models.Model):
+class Location(models.Model):
     court_name = models.CharField(max_length=50)
     street_address = models.CharField(max_length=50)
     city = models.CharField(max_length=50)
