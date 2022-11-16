@@ -1,9 +1,69 @@
-{% extends 'base.html' %}
-{% load static %}
-{% block content %}
+{% extends 'base.html' %} {% load static %} {% block content %}
 
 <div>
-    <p>This is the data page view</p>
+  <p>This is the data page view</p>
+  <p>
+    This page will house a form for users to submit new pickleball court
+    loactions. Example form outline below:
+  </p>
+  <form>
+    <fieldset>
+      <legend>Submit a Utah Valley pickleball location:</legend>
+      <label for="address"
+        >Street Address:
+        <br />
+        <input type="text" id="address" title="Enter the street address: " />
+      </label>
+      <br />
+
+      <label for="city"
+        >City:
+        <br />
+        <input type="text" id="city" title="Enter the city: " />
+      </label>
+      <br />
+      <label for="state"
+        >State:
+        <br />
+        <input type="text" id="state" title="Enter the state: " />
+      </label>
+      <br />
+      <label for="zip"
+        >Zip:
+        <br />
+        <input type="text" id="zip" title="Enter the zipcode: " />
+      </label>
+      <br />
+      <label for="courtnum"
+        >Street Address:
+        <br />
+        <input type="text" id="courtnum" title="Enter the number of courts: " />
+      </label>
+      <br />
+      <label for="opens"
+        >Open Time:
+        <br />
+        <input type="text" id="opens" title="What time do the court(s) open?: " />
+      </label>
+      <br />
+      <label for="address"
+      >Close Time:
+      <br />
+      <input type="text" id="closes" title="What time do the court(s) close?: " />
+    </label>
+    <br />
+    <label for="outin"
+    >Indoor or Outdoor?:
+    <br />
+    <input type="text" id="outin" title="Is this location indoor or outdoor? : " />
+  </label>
+  <br />
+  <label for="name"
+  >Court Name:
+  <br />
+  <input type="text" id="name" title="Enter the location name (if applicable): " />
+</label>
+<br />
 </div>
 
 {% endblock %}
