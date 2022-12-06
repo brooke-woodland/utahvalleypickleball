@@ -1,0 +1,86 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load bootstrap5 %}
+{% block content %}
+
+<div>
+  <p>This is the update data page view</p>
+  <p>
+    This page will house a form for users to update pickleball court
+    loactions. Example form outline below:
+  </p>
+  <form action="{% url 'updateDataSave' %}" method="POST">
+    {% csrf_token %}
+    <fieldset>
+      <legend>Update {{ court_name }}</legend>
+
+      <label for="court_name"
+        >Location Name:
+        <br />
+        <input type="text" id="court_name" title="Enter the location name: " name="court_name" value="{{ court_name }}"/>
+      </label>
+      <br />
+
+      <label for="street_address"
+        >Street Address:
+        <br />
+        <input type="text" id="street_address" title="Enter the street address: " name="street_address" value="{{ street_address }}"/>
+      </label>
+      <br />
+
+      <label for="city"
+        >City:
+        <br />
+        <input type="text" id="city" title="Enter the city: " name="city" value="{{ city }}"/>
+      </label>
+      <br />
+
+      <label for="state"
+        >State: {{ state }}
+        <br />
+        <input type="text" id="state" name="state" value="{{ state }}" hidden/>
+      </label>
+      <br />
+
+      <label for="courts"
+        >Number of Courts:
+        <br />
+        <input type="text" id="courts" title="Enter the number of courts: " name="courts" value="{{ courts }}"/>
+      </label>
+      <br />
+
+      <label for="openTime"
+        >Open Time:
+        <br />
+        <input type="time" id="openTime" title="What time do the court(s) open?: " name="openTime" value="{{ openTime }}"/>
+      </label>
+      <br />
+
+      <label for="closeTime"
+        >Close Time:
+        <br />
+        <input type="time" id="closeTime" title="What time do the court(s) close?: " name="closeTime" value="{{ closeTime }}"/>
+      </label>
+      <br />
+
+    {% if indoor == True %}
+        <input type="radio" id="indoor" name="indoor" value=True checked>
+        <label for="indoor">Indoor</label><br>
+        <input type="radio" id="outdoor" name="indoor" value=False>
+        <label for="outdoor">Outdoor</label><br>
+    {% else %}
+        <input type="radio" id="indoor" name="indoor" value=True>
+        <label for="indoor">Indoor</label><br>
+        <input type="radio" id="outdoor" name="indoor" value=False checked>
+        <label for="outdoor">Outdoor</label><br>
+    {% endif %}
+  <br />
+
+  <input hidden name="id" value={{ id }}>
+
+<button type="submit">Save</button>  
+</fieldset>
+</form>
+</div>
+
+{% endblock %}

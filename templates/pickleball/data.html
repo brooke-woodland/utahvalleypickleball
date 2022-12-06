@@ -1,65 +1,40 @@
 {% extends 'base.html' %}
 {% load static %}
-{% load bootstrap5 %}
 {% block content %}
 
-<div>
-  <p>This is the data page view</p>
-  <p>
-    This page will house a form for users to submit new pickleball court
-    loactions. Example form outline below:
-  </p>
-  <form>
-    <fieldset>
-      <legend>Submit a Utah Valley pickleball location:</legend>
-      <label for="address"
-        >Street Address:
-        <br />
-        <input type="text" id="address" title="Enter the street address: " />
-      </label>
-      <br />
-
-      <label for="city"
-        >City:
-        <br />
-        <input type="text" id="city" title="Enter the city: " />
-      </label>
-      <br />
-      <label for="state"
-        >State: Utah
-      <br />
-      <label for="courtnum"
-        >Num Courts:
-        <br />
-        <input type="text" id="courtnum" title="Enter the number of courts: " />
-      </label>
-      <br />
-      <label for="opens"
-        >Open Time:
-        <br />
-        <input type="text" id="opens" title="What time do the court(s) open?: " />
-      </label>
-      <br />
-      <label for="address"
-      >Close Time:
-      <br />
-      <input type="text" id="closes" title="What time do the court(s) close?: " />
-    </label>
-    <br />
-    <input type="radio" id="indoor" name="indoor" value="indoor">
-    <label for="indoor">Indoor</label><br>
-    <input type="radio" id="outdoor" name="outdoor" value="outdoor">
-    <label for="outdoor">Outdoor</label><br>
-  <br />
-  <label for="name"
-  >Court Name:
-  <br />
-  <input type="text" id="name" title="Enter the location name (if applicable): " />
-</label>
-<br />
-<button type="submit">Submit Data</button>  
-</fieldset>
-</form>
-</div>
+{% for location in data %}
+  <br/>
+  <form action="{% url 'updateData' %}" method="POST">
+    {% csrf_token %}
+    <p>Location Name: {{ location.court_name }}</p>
+    <input hidden name="court_name" value="{{ location.court_name }}">
+    <p>Street Address: {{ location.street_address }}</p>
+    <input hidden name="street_address" value="{{ location.street_address }}">
+    <p>City: {{ location.city }}</p>
+    <input hidden name="city" value="{{ location.city }}">
+    <p>State: {{ location.state }}</p>
+    <input hidden name="state" value="{{ location.state }}">
+    <p>Number of courts: {{ location.courts }}</p>
+    <input hidden name="courts" value="{{ location.courts }}">
+    <p>Open Time: {{ location.openTime }}</p>
+    <input type="time" hidden name="openTime" value="{{ location.openTime }}">
+    <p>Close Time: {{ location.closeTime }}</p>
+    <input type="time" hidden name="closeTime" value="{{ location.closeTime }}">
+    {% if location.indoor == True %}
+      <p>Indoor?: Yes</p>
+    {% else %}
+      <p>Indoor?: No</p>
+    {% endif %}
+    <input hidden name="indoor" value="{{ location.indoor }}">
+    <input hidden name="id" value={{ location.id }}>
+    <button type="submit">Update</button>
+  </form>
+  <form action="{% url 'deleteData' %}" method="POST">
+    {% csrf_token %}
+    <button>Delete</button>
+    <input hidden name="id" value={{ location.id }}>
+  </form>
+  <br/>
+{% endfor %}
 
 {% endblock %}

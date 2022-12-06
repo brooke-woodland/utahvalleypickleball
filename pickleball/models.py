@@ -1,5 +1,4 @@
 from django.db import models
-from django.core.exceptions import ValidationError
 
 
 # Create your models here.
@@ -12,5 +11,3 @@ class Location(models.Model):
     openTime = models.TimeField(default= None)
     closeTime = models.TimeField(default= None)
     indoor = models.BooleanField(default=False)
-        
-
