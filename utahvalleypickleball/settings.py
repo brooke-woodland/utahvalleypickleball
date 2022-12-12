@@ -85,7 +85,7 @@ WSGI_APPLICATION = 'utahvalleypickleball.wsgi.application'
 DATABASES = {
                 'default': {
                 'ENGINE': 'django.db.backends.postgresql',
-                'NAME': 'pickleball1',
+                'NAME': env('DB_NAME'),
                 'USER': 'postgres',
                 'PASSWORD': env("DB_PASSWORD"),
                 'HOST': 'localhost'
