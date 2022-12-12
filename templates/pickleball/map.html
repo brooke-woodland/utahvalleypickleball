@@ -1,6 +1,7 @@
+{% extends 'base.html' %}
 {% load bootstrap5 %}
 {% load static %}
-<!DOCTYPE html>
+{% block content%}
 <!--
  @license
  Copyright 2019 Google LLC. All Rights Reserved.
@@ -54,5 +55,6 @@
       src="https://maps.googleapis.com/maps/api/js?key={{ key }}&callback=initMap&v=weekly"
       defer
     ></script>
+{% endblock %}
   </body>
 </html>
