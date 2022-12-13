@@ -2,43 +2,68 @@
 {% load static %}
 {% block content %}
 
-<div style="margin-left: 1vw">
-  {% for location in data %}
-    <br/>
-    <div style="width: fit-content; background-color: #ccffef; border-radius: 25px; padding: 20px;">
-      <form action="{% url 'updateData' %}" method="POST">
-        {% csrf_token %}
-        <p>Location Name: {{ location.court_name }}</p>
+<div style="margin:50px">
+  <h5 class="table-style">Courts Near Me:</h5>
+  <br>
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col">Location Name</th>
+        <th scope="col">Street Address</th>
+        <th scope="col">City</th>
+        <th scope="col">State</th>
+        <th scope="col">Number of Courts</th>
+        <th scope="col">Open Time</th>
+        <th scope="col">Close Time</th>
+        <th scope="col">Indoor?</th>
+        <th scope="col">Edit</th> 
+        <th scope="col">Delete</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for location in data %}
+    <tr>
+      <td>{{ location.court_name }}
         <input hidden name="court_name" value="{{ location.court_name }}">
-        <p>Street Address: {{ location.street_address }}</p>
-        <input hidden name="street_address" value="{{ location.street_address }}">
-        <p>City: {{ location.city }}</p>
-        <input hidden name="city" value="{{ location.city }}">
-        <p>State: {{ location.state }}</p>
-        <input hidden name="state" value="{{ location.state }}">
-        <p>Number of courts: {{ location.courts }}</p>
-        <input hidden name="courts" value="{{ location.courts }}">
-        <p>Open Time: {{ location.openTime }}</p>
-        <input type="time" hidden name="openTime" value="{{ location.openTime }}">
-        <p>Close Time: {{ location.closeTime }}</p>
-        <input type="time" hidden name="closeTime" value="{{ location.closeTime }}">
-        {% if location.indoor == True %}
-          <p>Indoor?: Yes</p>
+      </td>
+      <td>{{ location.street_address }}</td>
+      <td>{{ location.city }}</td>
+      <td>{{ location.state }}</td>
+      <td>{{ location.courts }}</td>
+      <td>{{ location.openTime }}</td>
+      <td>{{ location.closeTime }}</td>
+      <td>{% if location.indoor == True %}
+        <p>Yes</p>
         {% else %}
-          <p>Indoor?: No</p>
+        <p>No</p>
         {% endif %}
-        <input hidden name="indoor" value="{{ location.indoor }}">
-        <input hidden name="id" value={{ location.id }}>
-        <button type="submit">Update</button>
-      </form>
-      <form action="{% url 'deleteData' %}" method="POST" style="margin-top: 1vh">
-        {% csrf_token %}
-        <button>Delete</button>
-        <input hidden name="id" value={{ location.id }}>
-      </form>
-    </div>
-    <br/>
-  {% endfor %}
+      </td>
+      <td>
+        <form action="{% url 'updateData' %}" method="POST">
+          <input hidden name="court_name" value="{{ location.court_name }}">
+          <input hidden name="street_address" value="{{ location.street_address }}">
+          <input hidden name="city" value="{{ location.city }}">
+          <input hidden name="state" value="{{ location.state }}">
+          <input hidden name="courts" value="{{ location.courts }}">
+          <input type="time" hidden name="openTime" value="{{ location.openTime }}">
+          <input type="time" hidden name="closeTime" value="{{ location.closeTime }}">
+          <input hidden name="indoor" value="{{ location.indoor }}">
+          <input hidden name="id" value={{ location.id }}>
+          {% csrf_token %}
+          <button class="button-17" type="submit">Update</button>
+        </form>
+      </td>
+      <td>
+        <form action="{% url 'deleteData' %}" method="POST">
+          {% csrf_token %}
+          <button class="button-17">Delete</button><input hidden name="id" value={{ location.id }}>
+        </form>
+      </td>
+      {% endfor %}
+
+  </tbody>
+  </table>
 </div>
+<img style="width:100%" src="{% static 'pickleball/img/pickleball_courts.jpg' %}" alt="Image of people playing pickleball on courts in a green, wooded neighborhood">
 
 {% endblock %}
