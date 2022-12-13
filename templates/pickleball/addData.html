@@ -3,59 +3,64 @@
 {% load bootstrap5 %}
 {% block content %}
 
-<div>
-  <p>This is the add data page view</p>
-  <p>
-    This page will house a form for users to submit new pickleball court
-    loactions. Example form outline below:
-  </p>
-  <form>
+<div style="margin-left: 1vw">
+  <form action="{% url 'addDataSave' %}" method="POST">
+    {% csrf_token %}
     <fieldset>
-      <legend>Submit a Utah Valley pickleball location:</legend>
-      <label for="address"
+      <legend>Submit a new Utah Valley pickleball location:</legend>
+      <label for="court_name"
+        >Location Name:
+        <br />
+        <input type="text" id="court_name" title="Enter the location name: " name="court_name" value="{{ court_name }}"/>
+      </label>
+      <br />
+
+      <label for="street_address"
         >Street Address:
         <br />
-        <input type="text" id="address" title="Enter the street address: " />
+        <input type="text" id="street_address" title="Enter the street address: " name="street_address" value="{{ street_address }}"/>
       </label>
       <br />
 
       <label for="city"
         >City:
         <br />
-        <input type="text" id="city" title="Enter the city: " />
+        <input type="text" id="city" title="Enter the city: " name="city" value="{{ city }}"/>
       </label>
       <br />
+
       <label for="state"
-        >State: Utah
-      <br />
-      <label for="courtnum"
-        >Num Courts:
+        >State: UT
         <br />
-        <input type="text" id="courtnum" title="Enter the number of courts: " />
+        <input type="text" id="state" name="state" value="UT" hidden/>
       </label>
       <br />
-      <label for="opens"
+
+      <label for="courts"
+        >Number of Courts:
+        <br />
+        <input type="text" id="courts" title="Enter the number of courts: " name="courts" value="{{ courts }}"/>
+      </label>
+      <br />
+
+      <label for="openTime"
         >Open Time:
         <br />
-        <input type="text" id="opens" title="What time do the court(s) open?: " />
+        <input type="time" id="openTime" title="What time do the court(s) open?: " name="openTime" value="{{ openTime }}"/>
       </label>
       <br />
-      <label for="address"
-      >Close Time:
+
+      <label for="closeTime"
+        >Close Time:
+        <br />
+        <input type="time" id="closeTime" title="What time do the court(s) close?: " name="closeTime" value="{{ closeTime }}"/>
+      </label>
       <br />
-      <input type="text" id="closes" title="What time do the court(s) close?: " />
-    </label>
-    <br />
-    <input type="radio" id="indoor" name="indoor" value="indoor">
-    <label for="indoor">Indoor</label><br>
-    <input type="radio" id="outdoor" name="outdoor" value="outdoor">
-    <label for="outdoor">Outdoor</label><br>
+      <input type="radio" id="indoor" name="indoor" value=True checked>
+      <label for="indoor">Indoor</label><br>
+      <input type="radio" id="outdoor" name="indoor" value=False>
+      <label for="outdoor">Outdoor</label><br>
   <br />
-  <label for="name"
-  >Court Name:
-  <br />
-  <input type="text" id="name" title="Enter the location name (if applicable): " />
-</label>
 <br />
 <button type="submit">Submit Data</button>  
 </fieldset>

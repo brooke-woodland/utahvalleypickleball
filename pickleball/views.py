@@ -66,8 +66,6 @@ def dataPageView(request):
     # Grab all location objects
     locations = Location.objects.all().values()
 
-    print(locations[0]['openTime'].strftime("%H:%M:%S"))
-
     # Convert time to string
     for location in locations:
         location['openTime'] = location['openTime'].strftime("%H:%M:%S")
@@ -87,6 +85,40 @@ def addDataPageView(request):
     """
     return render(request, 'pickleball/addData.html')
 
+def addData(request):
+    """
+    This adds new data
+    """
+    # Grab body from request
+    body = dict(request.POST.items())
+
+    # Grab params
+    court_name = body['court_name']
+    street_address = body['street_address']
+    city = body['city']
+    state = body['state']
+    courts = int(body['courts'])
+    openTime = body['openTime']
+    closeTime = body['closeTime']
+    indoor = True if body['indoor'] == 'True' else False
+
+    # Create new object
+    newLocation = Location(
+        court_name=court_name,
+        street_address=street_address,
+        city=city,
+        state=state,
+        courts=courts,
+        openTime=openTime,
+        closeTime=closeTime,
+        indoor=indoor
+    )
+
+    # Save it
+    newLocation.save()
+
+    return redirect('/data/view')
+
 
 def updateDataPageView(request):
     """
@@ -104,7 +136,7 @@ def updateDataPageView(request):
         "courts": int(body['courts']),
         "openTime": body['openTime'],
         "closeTime": body['closeTime'],
-        "indoor": bool(body['indoor']),
+        "indoor": True if body['indoor'] == 'True' else False,
         "id": int(body['id'])
     }
 
