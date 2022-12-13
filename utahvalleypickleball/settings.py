@@ -45,7 +45,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'pickleball.apps.PickleballConfig',
-    'bootstrap5',
 ]
 
 MIDDLEWARE = [
