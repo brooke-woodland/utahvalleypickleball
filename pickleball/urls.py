@@ -1,6 +1,7 @@
 from django.urls import path
 from .views import indexPageView, aboutPageView, mapsPageView, dataPageView
 from .views import addDataPageView, updateDataPageView, deleteData, updateData, addData
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 urlpatterns =[
     path('about/', aboutPageView, name='about'),
@@ -13,3 +14,5 @@ urlpatterns =[
     path('maps/', mapsPageView, name='maps'),
     path ("", indexPageView, name ="index"),
 ]
+
+urlpatterns += staticfiles_urlpatterns()
