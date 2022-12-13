@@ -3,53 +3,39 @@
 {% load bootstrap5 %}
 {% block content %}
 
-<div class="align-items-center" style="margin:20px">
+<div class="align-items-center" style="margin:40px; text-align:center;">
   <form action="{% url 'updateDataSave' %}" method="POST">
     {% csrf_token %}
     <fieldset>
       <legend>Update {{ court_name }}</legend>
       <div class="form-group">
-        <label for="court_name">Location Name:</label>
+        <label for="court_name">Location Name:</label><br>
           <input type="text" id="court_name" title="Enter the location name: " name="court_name" value="{{ court_name }}"/>
         <br />
       </div>
-      <div class="form-row align-items-center">
-        <div class="form-group col-auto">
-          <label for="street_address"
-            >Street Address:
+        <div class="form-group">
+          <label for="street_address">Street Address:</label><br>
             <input type="text" id="street_address" title="Enter the street address: " name="street_address" value="{{ street_address }}"/>
-          </label>
           <br />
         </div>
-        <div class="form-group col-auto">
-          <label for="city"
-            >City:
+        <div class="form-group">
+          <label for="city">City:</label><br>
             <input type="text" id="city" title="Enter the city: " name="city" value="{{ city }}"/>
-          </label>
           <br />
         </div>
-        <div class="form-group col-auto">
-          <label for="state"
-            >State: {{ state }}
+        <div class="form-group">
+          <label for="state">State: {{ state }}</label>
             <input type="text" id="state" name="state" value="{{ state }}" hidden/>
-          </label>
-          <br />
         </div>
-      </div>
       <div class="form-group">
-        <label for="courts"
-          >Number of Courts:
+        <label for="courts">Number of Courts:</label><br>
           <input type="text" id="courts" title="Enter the number of courts: " name="courts" value="{{ courts }}"/>
-        </label>
         <br />
       </div>
-      <div class="form-row align-items-center">
         <div class="form-group">
-          <label for="openTime"
-            >Open Time:
+          <label for="openTime">Open Time:</label>
             <input type="time" id="openTime" title="What time do the court(s) open?: " name="openTime" value="{{ openTime }}"/>
-          </label>
-          <br />
+          <br/>
         </div>
         <div class="form-group">
           <label for="closeTime"
@@ -58,8 +44,7 @@
           </label>
           <br />
         </div>
-      </div>
-      
+
       <div class="form-group">
         {% if indoor == True %}
             <input type="radio" id="indoor" name="indoor" value=True checked>

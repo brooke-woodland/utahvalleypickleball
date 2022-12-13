@@ -3,7 +3,7 @@
 {% load bootstrap5 %}
 {% block content %}
 
-<div style="margin-left: 1vw">
+<div class="align-items-center" style="margin:40px; text-align:center; ">
   <form action="{% url 'addDataSave' %}" method="POST">
     {% csrf_token %}
     <fieldset>
@@ -55,13 +55,12 @@
         <br />
         <input type="time" id="closeTime" title="What time do the court(s) close?: " name="closeTime" value="{{ closeTime }}"/>
       </label>
-      <br />
+      <br /><br>
       <input type="radio" id="indoor" name="indoor" value=True checked>
       <label for="indoor">Indoor</label><br>
       <input type="radio" id="outdoor" name="indoor" value=False>
       <label for="outdoor">Outdoor</label><br>
-  <br />
-<br />
+  <br>
 <button class="button-17" type="submit">Submit Data</button>  
 </fieldset>
 </form>
