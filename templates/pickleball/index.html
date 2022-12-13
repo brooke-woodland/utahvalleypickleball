@@ -1,10 +1,19 @@
-{% extends 'base.html' %}
+{% extends 'base.html' %} 
 {% load static %}
 {% load bootstrap5 %}
 {% block content %}
 
+<body>
+<br>
 <div>
-    <p>This is the index page view</p>
+  <center><h1>Welcome to Utah Valley Pickleball</h1>
 </div>
 
+<div>
+  <center><img style="max-width:70%;" border="0" margin="0" padding="0" src="{% static 'pickleball/img/paddles.jpeg'%}" alt="">
+</div>
+
+<center><h3>Begin your pickleball journey at a court near you!</h3>
+<br>
+</body>
 {% endblock %}
